@@ -1,0 +1,174 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Main Background: User requested #def8ff */
+    --background: 195 100% 94%; /* #def8ff */
+    --foreground: 240 10% 10%; /* Dark gray for text on light background */
+
+    /* Cards on the light blue background */
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 240 10% 10%; /* Dark text on cards */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    /* Primary color for main interactive elements (e.g., buttons on page content) */
+    --primary: 231 48% 48%; /* Deep Indigo #3F51B5 */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+
+    /* Secondary color for less prominent elements on page content */
+    --secondary: 195 70% 88%; /* Lighter shade of the main background hue #d1eefc */
+    --secondary-foreground: 240 10% 20%; /* Darker text for secondary elements */
+
+    --muted: 195 60% 85%; /* Muted version of background hue for subtle text/borders */
+    --muted-foreground: 240 5% 45%; /* Darker muted text */
+
+    /* Accent color for highlights, icons, etc. */
+    --accent: 187 100% 42%; /* Cyan #00BCD4 */
+    --accent-foreground: 0 0% 100%; /* White text for accent contrast */
+
+    --destructive: 0 70% 50%; /* A clear destructive red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 195 50% 80%; /* Border slightly darker than main background */
+    --input: 0 0% 100%; /* White input background */
+    --ring: 231 48% 52%; /* Primary color for focus rings */
+
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors - User requested #f2fcff for background */
+    --sidebar-background: 195 100% 98%; /* #f2fcff - Very Light Blue */
+    --sidebar-foreground: 240 10% 10%;  /* Dark gray text for readability on very light sidebar */
+    
+    /* Active item in sidebar */
+    --sidebar-primary: 195 70% 90%; /* Distinct light blue for active item background #d1eefc */
+    --sidebar-primary-foreground: hsl(var(--sidebar-foreground)); /* Dark gray text for active items (same as default sidebar text) */
+    
+    /* Hover item in sidebar */
+    --sidebar-accent: 195 80% 92%; /* Slightly darker light blue for hover background #e0f3fa */
+    --sidebar-accent-foreground: hsl(var(--sidebar-foreground)); /* Dark gray text for hover (same as default sidebar text) */
+    
+    --sidebar-border: 195 60% 90%; /* Border for sidebar elements, darker than sidebar background */
+    --sidebar-ring: 231 48% 52%; /* Main primary for focus rings in sidebar */
+
+    --chart-1: 231 48% 48%; /* primary */
+    --chart-2: 187 100% 42%; /* accent */
+    --chart-3: 240 5% 45%;  /* muted-foreground */
+    --chart-4: 240 10% 20%; /* secondary-foreground */
+    --chart-5: 240 10% 10%; /* foreground */
+  }
+
+  }
+
+  .dark {
+    /* Main Background: Dark theme background */
+    --background: 240 10% 4%; /* Dark background */
+    --foreground: 0 0% 95%; /* Light text for dark mode */
+
+    /* Cards on the dark background */
+    --card: 240 10% 10%; /* Dark cards */
+    --card-foreground: 0 0% 95%; /* Light text on dark cards */
+
+    --popover: 240 10% 10%; /* Dark popover */
+    --popover-foreground: 0 0% 95%; /* Light text on popover */
+
+    /* Primary color for main interactive elements in dark mode */
+    --primary: 231 48% 48%; /* Same primary color */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+
+    /* Secondary color for less prominent elements in dark mode */
+    --secondary: 240 10% 15%; /* Slightly lighter than background */
+    --secondary-foreground: 0 0% 95%; /* Light text for secondary elements */
+
+    --muted: 240 10% 15%; /* Muted version of background hue */
+    --muted-foreground: 240 5% 65%; /* Lighter muted text for dark mode */
+
+    /* Accent color for highlights, icons, etc. in dark mode */
+    --accent: 187 100% 42%; /* Same cyan accent */
+    --accent-foreground: 0 0% 100%; /* White text for accent contrast */
+
+    --destructive: 0 70% 50%; /* Same destructive red */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive */
+
+    --border: 240 10% 20%; /* Border for dark mode */
+    --input: 240 10% 15%; /* Input background for dark mode */
+    --ring: 231 48% 52%; /* Primary color for focus rings */
+
+    /* Sidebar specific colors for dark mode */
+    --sidebar-background: 240 10% 8%; /* Dark sidebar background */
+    --sidebar-foreground: 0 0% 95%; /* Light text for dark sidebar */
+    
+    /* Active item in sidebar - dark mode */
+    --sidebar-primary: 231 48% 25%; /* Darker primary for active item */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text for active items */
+    
+    /* Hover item in sidebar - dark mode */
+    --sidebar-accent: 240 10% 15%; /* Slightly lighter than sidebar background */
+    --sidebar-accent-foreground: 0 0% 100%; /* White text for hover */
+    
+    --sidebar-border: 240 10% 15%; /* Border for sidebar elements */
+    --sidebar-ring: 231 48% 52%; /* Main primary for focus rings in sidebar */
+
+    --chart-1: 231 48% 48%; /* primary */
+    --chart-2: 187 100% 42%; /* accent */
+    --chart-3: 240 5% 65%;  /* muted-foreground */
+    --chart-4: 0 0% 95%;    /* secondary-foreground */
+    --chart-5: 0 0% 100%;   /* foreground */
+  }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-200;
+    font-family: var(--font-roboto), sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-roboto), sans-serif;
+  }
+}
+
+/* Add subtle fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0; /* Start hidden */
+}
+
+/* Animation delay utility classes */
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+
+/* Ensure html and body take full height for flex layouts */
+html, body, #__next {
+  height: 100%;
+}
+
+/* Custom scrollbar for a cleaner look - optional */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background) / 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}

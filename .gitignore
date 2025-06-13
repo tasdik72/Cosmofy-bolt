@@ -1,0 +1,73 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.pnpm-store/
+
+# Build output
+/.next/
+/out/
+/build
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Testing
+/coverage
+
+# IDE and Editor
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.history/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# System Files
+.DS_Store
+Thumbs.db
+dump.rdb
+
+# TypeScript
+*.tsbuildinfo
+
+# Documentation
+documentation.pdf
+# Documentation file is version controlled
+# documentation.md
+
+# Next.js specific
+.next/
+out/
+
+# Local development
+*.local
+
+# Misc
+.cache/
+.temp/
+.tmp/
+*.pem
+
+# Firebase (if used)
+.firebase/
+firebase-debug.log
+firestore-debug.log
+firebase-debug-*.log
