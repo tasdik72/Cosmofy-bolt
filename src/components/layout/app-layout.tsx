@@ -28,7 +28,8 @@ import {
   LayoutDashboard,
   Bot, // Added Bot icon
   MessageCircle, // Added for FAB
-  X as CloseIcon // Added for FAB close state
+  X as CloseIcon, // Added for FAB close state
+  ExternalLink
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
@@ -62,19 +63,19 @@ export function AppLayout({ children }: { children: ReactNode }) {
           side="left" 
           variant="sidebar" 
           collapsible="icon" 
-          className="border-r border-sidebar-border bg-sidebar text-sidebar-foreground"
+          className="border-r border-sidebar-border bg-gray-900 text-white"
         >
           <SidebarHeader className="p-4">
             <Link href="/" className="flex items-center gap-2 group">
               <CosmofyLogo size="md" className="text-primary transition-transform group-hover:rotate-[15deg] duration-300 group-data-[collapsible=icon]:hidden" />
-              <h1 className="text-3xl font-semibold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
+              <h1 className="text-2xl font-semibold text-white group-data-[collapsible=icon]:hidden">
                 Cosmofy
               </h1>
             </Link>
           </SidebarHeader>
 
-          <SidebarContent className="flex-1 px-2 py-0 flex flex-col justify-between">
-            <SidebarMenu className="space-y-1">
+          <SidebarContent className="flex-1 px-3 py-0 flex flex-col justify-between">
+            <SidebarMenu className="space-y-2">
               {mainNavItems.map((item) => {
                 const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
                 return (
@@ -85,20 +86,21 @@ export function AppLayout({ children }: { children: ReactNode }) {
                       variant="default"
                       size="default"
                       className={cn(
-                        "justify-start w-full",
-                        isActive ? "bg-sidebar-primary" : "hover:bg-sidebar-accent"
+                        "justify-start w-full rounded-lg px-3 py-2.5 transition-all duration-200",
+                        isActive 
+                          ? "bg-blue-600 text-white shadow-md" 
+                          : "text-gray-300 hover:bg-gray-800 hover:text-white"
                       )}
                       tooltip={{children: item.label, side: "right", align: "center"}}
                     >
                       <Link href={item.href} className="flex items-center gap-3">
                          <item.icon className={cn(
-                           "h-5 w-5 shrink-0 text-sidebar-foreground", 
-                           isActive ? "text-sidebar-primary-foreground" : "group-hover/menu-item:text-sidebar-accent-foreground"
+                           "h-5 w-5 shrink-0", 
+                           isActive ? "text-white" : "text-gray-300"
                          )} />
                         <span className={cn(
-                          "group-data-[collapsible=icon]:hidden",
-                           isActive ? "text-sidebar-primary-foreground font-semibold" : "text-sidebar-foreground",
-                           "group-hover/menu-item:text-sidebar-accent-foreground"
+                          "group-data-[collapsible=icon]:hidden font-medium",
+                           isActive ? "text-white" : "text-gray-300"
                         )}>{item.label}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -110,7 +112,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
             {/* Removed bottomNavItems section */}
           </SidebarContent>
 
-          <SidebarFooter className="p-4 mt-auto border-t border-sidebar-border group-data-[collapsible=icon]:border-none flex flex-col items-center gap-2">
+          <SidebarFooter className="p-4 mt-auto border-t border-gray-700 group-data-[collapsible=icon]:border-none flex flex-col items-center gap-3">
              {/* Donate Button at the bottom */}
              <SidebarMenuItem key={donateNavItem.label} className="w-full">
                 <SidebarMenuButton
@@ -119,28 +121,45 @@ export function AppLayout({ children }: { children: ReactNode }) {
                   variant="default"
                   size="default"
                   className={cn(
-                    "justify-start w-full",
-                    pathname === donateNavItem.href ? "bg-sidebar-primary" : "hover:bg-sidebar-accent"
+                    "justify-start w-full rounded-lg px-3 py-2.5 transition-all duration-200",
+                    pathname === donateNavItem.href 
+                      ? "bg-blue-600 text-white shadow-md" 
+                      : "text-gray-300 hover:bg-gray-800 hover:text-white"
                   )}
                    tooltip={{children: donateNavItem.label, side: "right", align: "center"}}
                 >
                   <Link href={donateNavItem.href} className="flex items-center gap-3">
                      <donateNavItem.icon className={cn(
-                       "h-5 w-5 shrink-0 text-sidebar-foreground", 
-                       pathname === donateNavItem.href ? "text-sidebar-primary-foreground" : "group-hover/menu-item:text-sidebar-accent-foreground"
+                       "h-5 w-5 shrink-0", 
+                       pathname === donateNavItem.href ? "text-white" : "text-gray-300"
                      )} />
                     <span className={cn(
-                      "group-data-[collapsible=icon]:hidden",
-                       pathname === donateNavItem.href ? "text-sidebar-primary-foreground font-semibold" : "text-sidebar-foreground",
-                       "group-hover/menu-item:text-sidebar-accent-foreground"
+                      "group-data-[collapsible=icon]:hidden font-medium",
+                       pathname === donateNavItem.href ? "text-white" : "text-gray-300"
                     )}>{donateNavItem.label}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-            <div className="group-data-[collapsible=icon]:hidden text-xs text-sidebar-foreground/70 flex flex-col sm:flex-row sm:items-center sm:justify-center text-center gap-x-2 w-full">
-              <span> {children} </span>
-              <Link href="/privacy-policy" className="text-primary hover:underline underline-offset-2">
+            {/* Built with Bolt.new Badge */}
+            <div className="group-data-[collapsible=icon]:hidden w-full">
+              <a
+                href="https://bolt.new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-medium rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-md hover:shadow-lg"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13 3L4 14h7l-1 8 9-11h-7l1-8z"/>
+                </svg>
+                Built with Bolt.new
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+
+            <div className="group-data-[collapsible=icon]:hidden text-xs text-gray-400 flex flex-col sm:flex-row sm:items-center sm:justify-center text-center gap-x-2 w-full">
+              <span>© 2025 Cosmofy</span>
+              <Link href="/privacy-policy" className="text-blue-400 hover:text-blue-300 hover:underline underline-offset-2 transition-colors">
                 Privacy Policy
               </Link>
               <SpeedInsights />
